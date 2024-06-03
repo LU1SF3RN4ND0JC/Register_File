@@ -5,7 +5,7 @@ entity DataMemory is
     Port (
            mem_write, mem_read : in  STD_LOGIC;                     
            clk : in  STD_LOGIC;
-           address : in  STD_LOGIC_VECTOR (31 downto 0); 
+           address : in  STD_LOGIC_VECTOR (4 downto 0); 
            write_data : in  STD_LOGIC_VECTOR (31 downto 0); 
            read_data: out  STD_LOGIC_VECTOR (31 downto 0));  
 end DataMemory;
@@ -104,7 +104,7 @@ end component;
     SIGNAL lod24, lod25, lod26, lod27, lod28, lod29, lod30, lod31 : STD_LOGIC;
 	
 begin
-	u1:decoder5x32 port map(inp=> address(4 downto 0), outp=> resD); --mux 5x32
+	u1:decoder5x32 port map(inp=> address, outp=> resD); --mux 5x32
 
 
 	lod0 <= resD(0) and mem_write; --operacion and
@@ -178,6 +178,6 @@ begin
 	
 --mux 5x32
 	mx0: mux5x32 PORT MAP(o0,o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13,o14,o15,o16,o17,o18,o19,o20,
-								o21,o22,o23,o24,o25,o26,o27,o28,o29,o30,o31,address(4 downto 0),read_data);
+								o21,o22,o23,o24,o25,o26,o27,o28,o29,o30,o31,address,read_data);
 
 end mem_arch;
